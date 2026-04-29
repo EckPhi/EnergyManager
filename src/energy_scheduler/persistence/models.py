@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -26,7 +26,7 @@ class DeviceORM(Base):
     rated_power_w: Mapped[float] = mapped_column(Float, default=0.0)
     interruptibility: Mapped[str] = mapped_column(String(32), default="non_interruptible")
     notes: Mapped[str] = mapped_column(Text, default="")
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
 
     bindings: Mapped[list[DeviceBindingORM]] = relationship(back_populates="device")
     tasks: Mapped[list[UsageTaskORM]] = relationship(back_populates="device")
@@ -97,7 +97,7 @@ class ScheduleORM(Base):
     request_id: Mapped[str] = mapped_column(String(36), nullable=False)
     date_label: Mapped[str] = mapped_column(String(16), nullable=False)
     solver: Mapped[str] = mapped_column(String(64), default="greedy_heuristic")
-    produced_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    produced_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
 
     items: Mapped[list[ScheduleItemORM]] = relationship(back_populates="schedule")
 
@@ -128,7 +128,7 @@ class CommandHistoryORM(Base):
     device_id: Mapped[str] = mapped_column(String(36), nullable=False)
     external_entity_id: Mapped[str] = mapped_column(String(255), nullable=False)
     command: Mapped[str] = mapped_column(String(64), nullable=False)
-    issued_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    issued_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
     outcome: Mapped[str] = mapped_column(String(32), default="pending")
 
 

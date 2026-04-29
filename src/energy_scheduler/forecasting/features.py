@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 from uuid import UUID
 
 from energy_scheduler.domain.forecasting import ConsumptionObservation, ConsumptionProfile
@@ -44,7 +44,7 @@ def extract_profiles(
             mean_duration_minutes=mean_dur,
             mean_energy_kwh=mean_en,
             sample_count=n,
-            computed_at=datetime.utcnow(),
+            computed_at=datetime.now(timezone.utc),
             stddev_duration_minutes=std_dur,
             stddev_energy_kwh=std_en,
             percentiles={"p50": p50, "p90": p90},

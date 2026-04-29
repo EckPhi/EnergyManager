@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 
 from energy_scheduler.pricing.contracts import SchedulerPriceSeries
 from energy_scheduler.scheduling.models import ScheduleItem, ScheduleResult
@@ -70,11 +70,11 @@ def explain_result(
                 item=ScheduleItem(
                     task_id=task_id,
                     device_id=task_id,
-                    start_at=datetime.utcnow(),
-                    end_at=datetime.utcnow(),
+                    start_at=datetime.now(timezone.utc),
+                    end_at=datetime.now(timezone.utc),
                 ),
-                selected_window_start=datetime.utcnow(),
-                selected_window_end=datetime.utcnow(),
+                selected_window_start=datetime.now(timezone.utc),
+                selected_window_end=datetime.now(timezone.utc),
                 estimated_cost_eur=None,
                 delay_reason="no_feasible_window",
             )
