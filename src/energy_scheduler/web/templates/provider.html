@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Provider — EnergyManager{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Price Provider</h1>
+  <form method="post">
+    <label>Provider<br><select name="provider_name">
+      <option value="awattar">aWATTar</option>
+      <option value="nordpool">Nord Pool</option>
+    </select></label><br><br>
+    <label>Region<br><input name="region" value="at"></label><br><br>
+    <button type="submit">Save</button>
+  </form>
+</div>
+{% endblock %}

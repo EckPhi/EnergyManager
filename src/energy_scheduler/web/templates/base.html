@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}EnergyManager{% endblock %}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f5f5f5; }
+    nav { background: #1a1a2e; color: white; padding: 1rem 2rem; display: flex; gap: 1.5rem; align-items: center; }
+    nav a { color: #e0e0ff; text-decoration: none; }
+    nav a:hover { color: white; }
+    main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+    .card { background: white; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>⚡ EnergyManager</strong>
+    <a href="/">Dashboard</a>
+    <a href="/devices">Devices</a>
+    <a href="/provider">Provider</a>
+    <a href="/schedule">Schedule</a>
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
