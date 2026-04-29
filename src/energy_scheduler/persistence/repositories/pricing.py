@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from energy_scheduler.persistence.models import PriceSeriesORM
 
 
-class PricingRepository:
+class PriceSeriesRepository:
     """CRUD operations for cached price series."""
 
     def __init__(self, session: AsyncSession) -> None:

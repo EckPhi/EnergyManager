@@ -74,4 +74,4 @@ class ScheduleResult:
     unschedulable_task_ids: list[UUID] = field(default_factory=list)
     solver: str = "unknown"
     solver_notes: str = ""
-    produced_at: datetime = field(default_factory=datetime.utcnow)
+    produced_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))

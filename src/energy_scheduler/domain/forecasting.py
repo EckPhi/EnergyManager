@@ -27,7 +27,7 @@ class ConsumptionProfile:
     mean_duration_minutes: float
     mean_energy_kwh: float
     sample_count: int
-    computed_at: datetime = field(default_factory=datetime.utcnow)
+    computed_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     stddev_duration_minutes: float = 0.0
     stddev_energy_kwh: float = 0.0
     percentiles: dict[str, float] = field(default_factory=dict)

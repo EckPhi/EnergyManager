@@ -37,7 +37,7 @@ class Device:
     interruptibility: InterruptibilityMode = InterruptibilityMode.non_interruptible
     id: UUID = field(default_factory=uuid4)
     notes: str = ""
-    created_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     metadata: dict[str, Any] = field(default_factory=dict)
 
 

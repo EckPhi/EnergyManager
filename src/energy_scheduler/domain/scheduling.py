@@ -59,10 +59,10 @@ class ScheduleItem:
 
 @dataclass
 class ScheduleResult:
-    """The output of the scheduling optimiser for one request."""
+    """The output of the scheduling optimizer for one request."""
 
     request_id: UUID
     items: list[ScheduleItem] = field(default_factory=list)
     unschedulable_task_ids: list[UUID] = field(default_factory=list)
     solver_notes: str = ""
-    produced_at: datetime = field(default_factory=datetime.utcnow)
+    produced_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))

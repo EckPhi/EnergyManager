@@ -11,7 +11,7 @@ from energy_scheduler.scheduling.models import ScheduleRequest, ScheduleResult
 
 
 class SchedulerOptimizer:
-    """Selects the best available solver and runs the optimisation.
+    """Selects the best available solver and runs the optimization.
 
     Currently implements the greedy heuristic as the primary solver.
     OR-Tools CP-SAT integration is stubbed for future use.
@@ -22,7 +22,7 @@ class SchedulerOptimizer:
         self._heuristic = GreedyHeuristicPlanner()
 
     def solve(self, request: ScheduleRequest) -> ScheduleResult:
-        """Run the optimiser on the scheduling request.
+        """Run the optimizer on the scheduling request.
 
         Args:
             request: The scheduling request with tasks and prices.
