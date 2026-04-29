@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Poetry
+poetry.lock.bak
+
+# Test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.coveragerc
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets / env
+.env
+.env.local
+.env.*.local
+secrets/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Built assets
+src/energy_scheduler/web/static/dist/
+*.min.js
+*.min.css
+
+# Temporary ML artifacts
+*.pkl
+*.joblib
+*.h5
+*.onnx
+checkpoints/
+runs/
+mlruns/
+
+# Docker
+.docker/
+
+# Alembic generated (keep versions/)
+# alembic/versions/*.py  # leave this commented — we DO commit migrations

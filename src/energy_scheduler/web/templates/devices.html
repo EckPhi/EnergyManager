@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Devices — EnergyManager{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Devices</h1>
+  {% if devices %}
+  <ul>
+    {% for device in devices %}
+    <li>{{ device.name }} ({{ device.device_type }}) — {{ device.rated_power_w }}W</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No devices registered yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

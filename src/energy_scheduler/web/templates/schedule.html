@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Schedule — EnergyManager{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Today's Schedule</h1>
+  {% if items %}
+  <table>
+    <thead><tr><th>Device</th><th>Start</th><th>End</th><th>Est. Cost</th></tr></thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.device_id }}</td>
+        <td>{{ item.start_at }}</td>
+        <td>{{ item.end_at }}</td>
+        <td>{{ item.estimated_cost_eur }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No schedule items for today.</p>
+  {% endif %}
+</div>
+{% endblock %}
