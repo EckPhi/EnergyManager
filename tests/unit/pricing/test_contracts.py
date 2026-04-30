@@ -4,15 +4,11 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-import pytest
-
 from energy_scheduler.pricing.contracts import (
     ConversionPolicy,
     IntervalType,
     PricePoint,
     PriceSeries,
-    ProviderCapabilities,
-    SchedulerPriceSeries,
 )
 
 

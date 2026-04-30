@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "energy-scheduler-scheduling"
+version = "0.1.0"
+description = "Schedule optimiser and service for the Energy Scheduler"
+authors = ["EnergyManager Contributors"]
+license = "Apache-2.0"
+packages = [{ include = "energy_scheduler/scheduling", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+energy-scheduler-domain = { path = "../domain", develop = true }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

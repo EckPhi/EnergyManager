@@ -2,20 +2,18 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+from datetime import date
 
+import httpx
 import pytest
 import respx
-import httpx
 
 from energy_scheduler.pricing.contracts import ProviderConfig
 from energy_scheduler.pricing.providers.awattar import AWattarAdapter
 
 
 class TestAWattarIntegration:
-    @pytest.mark.asyncio
-    @respx.mock
-    async def test_fetch_day_ahead_returns_series(self) -> None:
+    async def test_fetch_day_ahead_returns_series(self, respx_mock: respx.MockRouter) -> None:
         target = date(2024, 1, 15)
         data = {
             "data": [
@@ -27,7 +25,7 @@ class TestAWattarIntegration:
                 for _ in range(24)
             ]
         }
-        respx.get("https://api.awattar.at/v1/marketdata").mock(
+        respx_mock.get("https://api.awattar.at/v1/marketdata").mock(
             return_value=httpx.Response(200, json=data)
         )
         adapter = AWattarAdapter()

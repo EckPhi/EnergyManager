@@ -9,13 +9,10 @@ import pytest
 
 from energy_scheduler.pricing.contracts import (
     ConversionPolicy,
-    IntervalType,
-    PricePoint,
-    PriceSeries,
     SchedulerPricePoint,
     SchedulerPriceSeries,
 )
-from energy_scheduler.scheduling.models import InterruptibilityMode, ScheduleRequest, Task
+from energy_scheduler.scheduling.models import InterruptibilityMode, Task
 
 
 def make_dt(hour: int, minute: int = 0) -> datetime:

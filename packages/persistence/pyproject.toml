@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "energy-scheduler-persistence"
+version = "0.1.0"
+description = "Database access layer for the Energy Scheduler"
+authors = ["EnergyManager Contributors"]
+license = "Apache-2.0"
+packages = [{ include = "energy_scheduler/persistence", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+sqlalchemy = "^2.0"
+alembic = "^1.14"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

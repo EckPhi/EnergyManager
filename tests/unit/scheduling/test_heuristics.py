@@ -2,13 +2,10 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from uuid import uuid4
-
 import pytest
 
 from energy_scheduler.scheduling.heuristics import GreedyHeuristicPlanner
-from energy_scheduler.scheduling.models import InterruptibilityMode, ScheduleRequest, Task
+from energy_scheduler.scheduling.models import InterruptibilityMode, ScheduleRequest
 from tests.conftest import make_dt, make_price_series, make_task
 
 

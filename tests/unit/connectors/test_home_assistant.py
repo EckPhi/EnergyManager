@@ -2,14 +2,11 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
-
+import httpx
 import pytest
 import respx
-import httpx
 
 from energy_scheduler.connectors.home_assistant import HomeAssistantConnector
-
 
 HA_URL = "http://homeassistant.local:8123"
 TOKEN = "test-token"
@@ -21,10 +18,10 @@ def connector() -> HomeAssistantConnector:
 
 
 class TestDiscover:
-    @pytest.mark.asyncio
-    @respx.mock
-    async def test_returns_entity_list(self, connector: HomeAssistantConnector) -> None:
-        respx.get(f"{HA_URL}/api/states").mock(
+    async def test_returns_entity_list(
+        self, connector: HomeAssistantConnector, respx_mock: respx.MockRouter
+    ) -> None:
+        respx_mock.get(f"{HA_URL}/api/states").mock(
             return_value=httpx.Response(
                 200,
                 json=[
@@ -37,19 +34,19 @@ class TestDiscover:
         assert len(entities) == 2
         assert entities[0]["entity_id"] == "switch.washing_machine"
 
-    @pytest.mark.asyncio
-    @respx.mock
-    async def test_http_error_propagates(self, connector: HomeAssistantConnector) -> None:
-        respx.get(f"{HA_URL}/api/states").mock(return_value=httpx.Response(401))
+    async def test_http_error_propagates(
+        self, connector: HomeAssistantConnector, respx_mock: respx.MockRouter
+    ) -> None:
+        respx_mock.get(f"{HA_URL}/api/states").mock(return_value=httpx.Response(401))
         with pytest.raises(httpx.HTTPStatusError):
             await connector.discover()
 
 
 class TestExecuteCommand:
-    @pytest.mark.asyncio
-    @respx.mock
-    async def test_turn_on(self, connector: HomeAssistantConnector) -> None:
-        respx.post(f"{HA_URL}/api/services/switch/turn_on").mock(
+    async def test_turn_on(
+        self, connector: HomeAssistantConnector, respx_mock: respx.MockRouter
+    ) -> None:
+        respx_mock.post(f"{HA_URL}/api/services/switch/turn_on").mock(
             return_value=httpx.Response(200, json=[])
         )
         result = await connector.execute_command("switch.washing_machine", "turn_on")
@@ -58,10 +55,10 @@ class TestExecuteCommand:
 
 
 class TestPollState:
-    @pytest.mark.asyncio
-    @respx.mock
-    async def test_returns_state_dict(self, connector: HomeAssistantConnector) -> None:
-        respx.get(f"{HA_URL}/api/states/switch.washing_machine").mock(
+    async def test_returns_state_dict(
+        self, connector: HomeAssistantConnector, respx_mock: respx.MockRouter
+    ) -> None:
+        respx_mock.get(f"{HA_URL}/api/states/switch.washing_machine").mock(
             return_value=httpx.Response(
                 200,
                 json={

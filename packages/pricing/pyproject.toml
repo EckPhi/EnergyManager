@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "energy-scheduler-pricing"
+version = "0.1.0"
+description = "Price fetching and transformation for the Energy Scheduler"
+authors = ["EnergyManager Contributors"]
+license = "Apache-2.0"
+packages = [{ include = "energy_scheduler/pricing", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+httpx = "^0.28"
+energy-scheduler-domain = { path = "../domain", develop = true }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

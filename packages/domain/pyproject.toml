@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "energy-scheduler-domain"
+version = "0.1.0"
+description = "Pure domain models for the Energy Scheduler (no I/O)"
+authors = ["EnergyManager Contributors"]
+license = "Apache-2.0"
+packages = [{ include = "energy_scheduler/domain", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

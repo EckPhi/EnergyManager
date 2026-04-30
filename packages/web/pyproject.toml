@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "energy-scheduler-web"
+version = "0.1.0"
+description = "FastAPI web layer and background jobs for the Energy Scheduler"
+authors = ["EnergyManager Contributors"]
+license = "Apache-2.0"
+packages = [
+    { include = "energy_scheduler/web", from = "src" },
+    { include = "energy_scheduler/background_jobs", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115"
+uvicorn = { extras = ["standard"], version = "^0.34" }
+pydantic = "^2.10"
+pydantic-settings = "^2.7"
+jinja2 = "^3.1"
+structlog = "^25.1"
+python-multipart = "^0.0.20"
+energy-scheduler-domain = { path = "../domain", develop = true }
+energy-scheduler-pricing = { path = "../pricing", develop = true }
+energy-scheduler-scheduling = { path = "../scheduling", develop = true }
+energy-scheduler-persistence = { path = "../persistence", develop = true }
+energy-scheduler-connectors = { path = "../connectors", develop = true }
+energy-scheduler-forecasting = { path = "../forecasting", develop = true }
+
+[tool.poetry.scripts]
+energy-scheduler = "energy_scheduler.web.app:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
